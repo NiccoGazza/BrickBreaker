@@ -1,0 +1,103 @@
+body{
+	margin: 0;
+	background-image: url("../img/sfondo.png");
+	background-size: cover;
+}
+
+button{
+	width: 52px;
+	height: 52px;
+	position: absolute;
+	background-image: url("../img/info.png");
+	background-size: cover;
+	cursor: pointer; 
+	float: right;
+	top: 30px;
+	right: 30px;
+	border-radius: 12px; 
+	box-shadow: 1px 4px #999;
+}
+
+
+.button:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(5px);
+}
+
+
+#login_content{
+	position: absolute;
+	height: 400px;
+	width: 400px;
+	left: 50%;
+	top: 50%;
+	margin-left: -220px;
+	margin-top: -200px;
+	text-align: center;
+	background-color: rgba(21, 22, 94, 0.7);
+	border: solid 3px;
+	border-radius: 15px;
+	box-shadow: 10px 10px 5px;
+}
+
+#login_header_content{
+	color: #EDEDED;
+	font-size: 32pt;
+	font-style: bold;
+}
+
+#registration_alert{
+	color: #EDEDED;
+	font-size: 20pt;
+}
+
+input[type=text], input[type=password]{
+	width: 70%;
+	height: 27px;
+	padding: 4px;
+	border-radius: 4px;
+	border: solid 3px black ;
+	font-size: 14pt;
+	font-style: italic; 
+}
+
+input[type=text]:focus, input[type=password]:focus{
+	background-color: #9999FF;
+}
+
+
+#login_button{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+input[type=button], input[type=submit]{
+	font-style: bold;
+	font-size: 14pt;
+	margin: 4px 2px;
+	width: 50%;
+	border-radius: 10px;
+	border: solid  black;
+	cursor: pointer;
+}
+
+input[type=button]:hover, input[type=submit]:hover{
+	background-color: #9999FF;
+}
+
+.Courier_Prime{
+	font-family: 'Courier Prime', monospace;
+}
+
+#istruzioni{
+	position:absolute;
+	background-color: rgba(21, 22, 94, 0.75);
+	top: 10%;
+	color: #EDEDED;
+	border: solid 3px white;
+	border-radius: 15px;
+	text-align: center;
+	font-size: 1.2em;
+}
