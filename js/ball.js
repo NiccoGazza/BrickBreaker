@@ -144,13 +144,3 @@ Ball.prototype.checkBottomHit =
 			clearInterval(game.ballTimer);
 	}
 
-Ball.prototype.checkBricksHit = 
-	function(ground){
-		
-
-
-
-
-
-
-	}

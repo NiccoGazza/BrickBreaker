@@ -69,7 +69,6 @@ Sketcher.prototype.drawBricks =
 		if(ground == null)
 			return;
 
-		console.log("dentro drawBricks");
 
 		var bricks = ground.configuration;
 
@@ -81,8 +80,6 @@ Sketcher.prototype.drawBricks =
 					newBrick.setAttribute('id', 'brick'+ (i*ground.columns + j));
 					this.playground.appendChild(newBrick);
 
-					console.log(bricks[i][j].point.x);
-					
 					newBrick.style.top = bricks[i][j].point.y + 'px';
 					newBrick.style.left = bricks[i][j].point.x  + 'px';
 				}

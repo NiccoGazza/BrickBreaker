@@ -133,9 +133,9 @@ Game.prototype.paddleClock =
 Game.prototype.ballClock = 
 	function(){ 
 		this.ball.checkPaddleHit(this.paddle);
-		this.ball.checkBricksHit(this.ground);
+		this.ground.checkHit(this.ball);
 		this.ball.move(this.playground);
-		this.ball.checkBottomHit(game, this.playground);
+		this.ball.checkBottomHit(game, this.playground); //toglie una vita. Se le vite sono 0 => gameover
 		this.sketcher.drawBall(this.ball);
 	}
 

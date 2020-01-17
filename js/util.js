@@ -4,7 +4,7 @@ var BRICK_HEIGHT = 25;
 var BLOCK_WIDTH = 100;
 var BLOCK_HEIGHT = 20;
 var BALL_RADIUS = 9;
-var BALL_STEP = 5;
+var BALL_STEP = 2;
 var PADDLE_STEP = 7.5;
 var ROWS = 8; 
 
