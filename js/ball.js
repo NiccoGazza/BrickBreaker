@@ -31,7 +31,7 @@ Ball.prototype.checkPaddleHit =
 		var new_stepX, new_stepY;
 			
 		if(this.point.y + 2*BALL_RADIUS > paddle.point.y){
-			if(between(centerX_ball, x_paddle + 40, x_paddle + 60)){//Lascio inalterato stepX
+			if(between(centerX_ball, x_paddle + 40, x_paddle + 60)){ 
 				this.stepY = -this.stepY;
 				this.stepX = this.stepX/2;
 				return;
@@ -142,4 +142,15 @@ Ball.prototype.checkBottomHit =
 	function(game, playground){
 		if(this.point.y + 2*BALL_RADIUS >= playground.offsetTop + playground.height)//hit pavimento
 			clearInterval(game.ballTimer);
+	}
+
+Ball.prototype.checkBricksHit = 
+	function(ground){
+		
+
+
+
+
+
+
 	}

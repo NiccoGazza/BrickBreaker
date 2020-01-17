@@ -63,3 +63,29 @@ Sketcher.prototype.drawPaddle =
 		_paddle.style.top = paddle.point.y + "px";
 		_paddle.style.left = paddle.point.x + "px";
 	}
+
+Sketcher.prototype.drawBricks = 
+	function(ground){
+		if(ground == null)
+			return;
+
+		console.log("dentro drawBricks");
+
+		var bricks = ground.configuration;
+
+		for(var i=0; i < ground.rows; i++){
+			for(var j=0; j < ground.columns; j++){
+				if(bricks[i][j].life == 1){
+					var newBrick = document.createElement('div');
+					newBrick.setAttribute('class', 'brick');
+					newBrick.setAttribute('id', 'brick'+ (i*ground.columns + j));
+					this.playground.appendChild(newBrick);
+
+					console.log(bricks[i][j].point.x);
+					
+					newBrick.style.top = bricks[i][j].point.y + 'px';
+					newBrick.style.left = bricks[i][j].point.x  + 'px';
+				}
+			}
+		}
+	}
