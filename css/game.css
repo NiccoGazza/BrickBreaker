@@ -4,9 +4,17 @@ html{
 }
 
 body{
+	width: 100%;
 	height: 100%;
 	margin: 0;
 }
+
+
+img{
+	max-width: 50%;
+	max-height: 50%;
+}	
+
 
 #playgroundWrapper{
 	margin: 0;
@@ -21,11 +29,11 @@ body{
 button{
 	position: relative;
 	width: 150px;
-	color: white;
+	color: black;
 	border: solid 2px white;
 	border-radius: 3px;
-	background-color: green;
-	box-shadow: 0px 5px 0px #00823F;
+	background-color: white;
+	box-shadow: 0px 5px 0px #5b5c5b;
 	top: 0px;
 	margin: 20px;
 	padding: 10px;
@@ -36,52 +44,95 @@ button{
 }
 
 button:active{
-  box-shadow: 0 3px 0 #00823F;
+  box-shadow: 0 3px 0 #5b5c5b;
   top: 3px;
 
 }
 
+
 #playground{
-	min-height: 80%;
+	min-height: 70%;
 	width: 60%;
 	margin: auto;
-	margin-top: 4%;
-	border: 2px solid grey;
+	margin-top: 8%;
+	border: 1px solid black;
 	background-position: center;
-	background-attachment: fixed;
 	background-color: lightblue;
+	background-image: url('../img/playground.png');
+	background-size: contain;
 }
+
+
 
 /* IE6 hack */
 * html #playground {
   height: 100%;
 }
 
+
+/****BALL*******/
 .ball{
 	position: absolute;
-	width: 18px;
-	height: 18px;
-	border-radius: 9px;
-	background-color: black;
-}
-
-.paddle{
-	position: absolute;
-	width: 100px;
+	width: 20px;
 	height: 20px;
 	border-radius: 10px;
-	background-color: red;
+	border: 1px solid black;
+	background: rgb(232,237,4);
+	/*background: radial-gradient(circle, rgba(7,110,0,0.7150210425967262) 15%, rgba(29,207,0,1) 100%);*/
+	background: radial-gradient(circle, rgba(16,255,0,0.7150210425967262) 15%, rgba(29,207,0,1) 100%);
+	box-sizing: border-box;
+}
+/****************/
+
+
+/****PADDLE****/
+.paddle{
+	position: absolute;
+	/*width: 100px;*/
+	height: 20px;
+	border: 1px solid black;
+	border-radius: 10px;
+	background: rgb(219,219,207);
+	background: radial-gradient(circle, rgba(219,219,207,1) 0%, rgba(128,128,128,1) 68%);
+	box-sizing: border-box;
 }
 
+/**************/
+
+/*******BRICKS*****/
 .brick{
 	position: absolute;
 	width: 100px;
 	height: 25px;
-	background-color: grey;
-	border: solid black 1px;
+	border: solid 1px black;
 	box-sizing: border-box;
+	opacity: 0.9;
 }
 
+/*Bricks' color*/
+
+.unbreakable{
+	background-color: #8a8987;
+	box-shadow: inset 40px 31px 84px -40px rgba(0,0,0,1);
+}
+
+.red{
+	background-color: #ff0808;
+	box-shadow: inset 50px 30px 88px -40px #A60000;
+}
+
+.orange{
+	background-color: #ff6a00;
+	box-shadow: inset 50px 31px 84px -40px #f2881d;
+}
+
+.yellow{
+	background-color: #ffea00;
+	box-shadow: inset 71px 54px 80px -40px #f5d000;
+
+}
+
+/***************/
 
 #divControl{
 	width: 100%;
@@ -104,18 +155,19 @@ button:active{
 	height: 100%;
 	font-size: 30px;
 	color: white;
-	text-shadow: 2px 2px 4px #FFFFFF;
+	text-shadow: 1px 1px 2px #FFFFFF;
 }
 
+/*****LIVES*******/
+
 #lives{
+	position: absolute;
 	margin-top: -5px;
 	float: left;
-	width: 50%;
 	height: 100%;
 }
 
 .heart{
-	position: relative;
 	opacity: 1;
 	background-image: url("../img/heart.png");
 	background-size: 30px;
@@ -124,6 +176,55 @@ button:active{
 	height: 30px;
 }
 
+/*******************/
+
+
+.powerup{
+	position: absolute;
+	opacity: 1;
+	background-size: 30px;
+	width: 30px;
+	height: 30px;
+}
+
+
+/******POPUP*****/
+.popup{
+	position: absolute;
+	width: 400px;
+	height: 150px;
+	left: 50%;
+	top: 50%;
+	margin-left: -200px;
+	margin-top: -100px;
+	text-align: center;
+	background-color: #EBEBEB;
+	border: solid 3px;
+	border-radius: 15px;
+	font-size: 18pt;
+}
+
+#game_over{
+	font-size: 22pt;
+	height: 100px;
+
+}
+
+
+.next_level{
+	position: relative;
+	margin: auto;
+	width: 50%;
+	padding: 15px;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-size: 16pt;
+	color: black;
+}
+
+
+/*FONT*/
 @font-face {
   font-family: 'Arcade';
   src: url('../img/arcade.ttf') format('truetype');

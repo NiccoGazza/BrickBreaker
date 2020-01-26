@@ -1,17 +1,19 @@
-function Ground(playground){
+function Ground(playground, sketcher){
 	this.playground = playground;
+	this.sketcher = sketcher;
 	this.topSpace = 20; //piccolo spazio in alto
 	this.sideSpace = 10; //piccolo spazio ai lati
 
 	this.rows = ROWS;
 	this.columns = Math.trunc( (this.playground.width - 2*this.sideSpace) / BLOCK_WIDTH);
+	//this.columns = 1;
 
-	this.count = this.rows*this.columns; //Quanti mattoncini ci sono
+	this.count = 0; //Quanti mattoncini da distruggere ci sono
 
 	this.offset = 0;
 
 	this.configuration = [];
-	this.level = level; //all'inizio è 0
+	//this.level = level; //all'inizio è 0
 
 	this.createBricks();
 }
@@ -19,10 +21,8 @@ function Ground(playground){
 
 
 Ground.prototype.createBricks = 
-	function(){
-		//console.log(this.rows);
-		//console.log(this.columns);
-
+	function(level){	//cambierò configurazione in base al livello. 
+		
 		this.offset = (this.playground.width - 2*this.sideSpace - this.columns*BLOCK_WIDTH)/2; 
 
 
@@ -30,18 +30,23 @@ Ground.prototype.createBricks =
 		for(var i = 0; i < this.rows; i++){
 			this.configuration[i] = [];
 			for(var j = 0; j < this.columns; j++){
-				this.configuration[i][j] = new Brick(BLOCK_WIDTH, BRICK_HEIGHT, 1);
+				this.configuration[i][j] = new Brick(BLOCK_WIDTH, BRICK_HEIGHT);
 				var y = this.playground.offsetTop + this.topSpace + i*BRICK_HEIGHT;
 				var x = this.playground.offsetLeft + this.sideSpace + this.offset + j*BLOCK_WIDTH ; 
 				this.configuration[i][j].coordInit(x,y);
+
+				this.configuration[i][j].life = Math.floor(Math.random()*4) + 1;
+
+				if(this.configuration[i][j].life != 4)
+					this.count++;
 			}
 		}
 	} 
 
 Ground.prototype.checkHit = 
-	function(ball){
+	function(game, ball, paddle){
 
-		var yLimit = this.configuration[this.rows-1][0].point.y; //quota limite per quando colpisce il lato lungo superiore 
+		var yLimit = this.configuration[this.rows-1][0].point.y + this.configuration[this.rows-1][0].height; //quota limite per quando colpisce il lato lungo superiore 
 
 		for(var i = 0; i < this.rows; i++){
 			for(var j = 0; j < this.columns; j++){
@@ -49,18 +54,28 @@ Ground.prototype.checkHit =
 				if(this.configuration[i][j].life > 0){
 
 					if(this.configuration[i][j].hit(ball, yLimit)){	
-						this.configuration[i][j].life--;
-						
+
+						if(this.configuration[i][j].life != 4){
+							this.configuration[i][j].life--;
+							this.sketcher.changeColor(this, i, j);
+							this.sketcher.updateScore(); 
+							generatePowerUp(this, i, j, paddle, game);
+						}
+
 						if(this.configuration[i][j].life == 0){
 							this.removeBrick(i, j);
 							this.count--;
+							if(this.count == 0){
+								clearInterval(magnetTimer);  
+								this.createPopup(game, this);
+							}								
 						}
+
 					}
 				}
 			}
 		}
 	}
-
 
 Ground.prototype.removeBrick = 
 	function(i,j){
@@ -75,3 +90,25 @@ Ground.prototype.removeBrick =
 
 		brickToRemove.parentNode.removeChild(brickToRemove);
 }
+
+
+Ground.prototype.createPopup = 
+	function(game, ground){
+		game.resumeButton.disabled = true;
+		game.pauseButton.disabled = true;
+
+		clearInterval(game.ballTimer);
+		clearInterval(game.paddleTimer);
+		
+		createPopup(ground);
+	}
+
+Ground.prototype.nextLevel = 
+	function(){
+		game.resetPosition();
+		removePopup();
+		this.count = 0;  //resetto count
+		this.createBricks(++level);
+		this.sketcher.drawBricks(this);
+		return;
+	}

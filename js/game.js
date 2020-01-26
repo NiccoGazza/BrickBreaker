@@ -3,12 +3,25 @@ var game = null;
 
 function begin(){
 	game = new Game();
+
+	//gestione bottoni
 	var resumeButton = document.getElementById('resumeButton');
 	var pauseButton = document.getElementById('pauseButton');
 	resumeButton.onclick = function(){ resume(game); };
 	resumeButton.setAttribute('disabled', true);	
 	pauseButton.onclick = function(){ pause(game); };
 	pauseButton.setAttribute('disabled', true);
+
+
+	setTimeout( function(){	if(game.begin == true && game.ballTimer == null)
+									window.alert("Press Spacebar to begin!");	
+							}, 10000);
+
+
+	//metto possibilità di far muovere il paddle
+	game.paddleTimer = setInterval('game.paddleClock()', 20);
+	game.ballStopped = setInterval('game.followThePaddle()', 20);
+
 }
 
 
@@ -20,14 +33,16 @@ function Game(){
 	this.sketcher = new Sketcher(document.getElementById('playground'), this.playgroundWrapper);	
 	this.ball = new Ball(this.playground, BALL_STEP, BALL_RADIUS);
 	this.paddle = new Paddle(this.playground, BLOCK_WIDTH, BLOCK_HEIGHT, PADDLE_STEP);
-	this.ground = new Ground(this.playground);
+	this.ground = new Ground(this.playground, this.sketcher);
 	this.spaceFlag = false;
 	this.leftFlag = false;
 	this.rightFlag = false;
 	this.begin = true;
 
+
 	this.ballTimer = null;
 	this.paddleTimer = null;
+	this.ballStopped = null;
 
 	window.addEventListener('keydown', this.keyDownHandler.bind(this), false);
 	window.addEventListener('keyup', this.keyUpHandler.bind(this), false);
@@ -42,7 +57,9 @@ function start(game){
 
 	//Avvio il gioco
 	game.ballTimer = setInterval('game.ballClock()', 20);
-	game.paddleTimer = setInterval('game.paddleClock()', 20);
+	//game.paddleTimer = setInterval('game.paddleClock()', 20);
+	magnetActive = false;
+	clearInterval(game.ballStopped); //quando inizia il gioco non serve più tale funzione (o quando lancio la pallina)
 }
 
 function pause(game){
@@ -50,6 +67,11 @@ function pause(game){
 	game.pauseButton.setAttribute('disabled', true);
 	clearInterval(game.ballTimer);
 	clearInterval(game.paddleTimer);
+	clearInterval(powerUpClock);
+
+	if(timer != null)
+		timer.pause();
+
 	return;
 }
 
@@ -58,6 +80,13 @@ function resume(game){
 	game.resumeButton.setAttribute('disabled', true);
 	game.ballTimer = setInterval('game.ballClock()', 20);
 	game.paddleTimer = setInterval('game.paddleClock()', 20);
+	powerUpClock = setInterval(function(){
+								movePowerUps(game.ground, game.paddle);
+								}, 20);
+
+	if(timer != null)
+		timer.resume();
+
 	return;
 }
 
@@ -96,6 +125,9 @@ Game.prototype.keyUpHandler =
 
 
 		switch(varkey){
+			/*case 13: 							//debug  
+				createPopup(this.ground);
+				break;*/
 			case 32: 
 				if(this.begin == true){
 					start(game);
@@ -115,15 +147,13 @@ Game.prototype.keyUpHandler =
 
 
 Game.prototype.paddleClock = 
-	function(){
+	function(){            //4 aggiunto nel primo if e tolto nel secondo è un valore "euristico"
 		var flag = 0;
-		if(this.leftFlag && 
-			this.paddle.point.x > this.playground.offsetLeft + 4)
+
+		if(this.leftFlag && this.paddle.point.x > this.playground.offsetLeft + 4)
 			flag = -1;
-		if(this.rightFlag && 
-		   this.paddle.point.x <= this.playground.offsetLeft 
-		   						  + this.playground.width
-		   						  - BLOCK_WIDTH -4)
+
+		if(this.rightFlag && this.paddle.point.x <= this.playground.offsetLeft  + this.playground.width - this.paddle.width - 4)    
 			flag = 1;
 
 		this.paddle.move(flag);
@@ -132,10 +162,10 @@ Game.prototype.paddleClock =
 
 Game.prototype.ballClock = 
 	function(){ 
-		this.ball.checkPaddleHit(this.paddle);
-		this.ground.checkHit(this.ball);
 		this.ball.move(this.playground);
-		this.ball.checkBottomHit(game, this.playground); //toglie una vita. Se le vite sono 0 => gameover
+		this.ball.checkPaddleHit(this.paddle);
+		this.ground.checkHit(this, this.ball, this.paddle, this.sketcher);
+		this.ball.checkBottomHit(this, this.playground); //toglie una vita. Se le vite sono 0 => gameover
 		this.sketcher.drawBall(this.ball);
 	}
 
@@ -150,3 +180,38 @@ function(){
 	this.sketcher.drawPaddle(this.paddle);
 	this.sketcher.drawBricks(this.ground);
 }
+
+
+Game.prototype.resetPosition = 
+	function(){
+		this.ball.resetPosition(this.playground);
+		this.paddle.resetPosition(this.playground);
+
+		this.sketcher.drawBall(this.ball);
+		this.sketcher.drawPaddle(this.paddle);
+
+		this.paddleTimer = setInterval('game.paddleClock()', 20);
+		this.ballStopped = setInterval('game.followThePaddle()', 20);
+
+		this.begin = true;
+
+	}
+
+Game.prototype.followThePaddle =  //funzione che permette al player di scegliere la posizione da cui lanciare la pallina;
+	function(){					  //devo aggiornare solo la posizione lungo x in modo che segua il paddle e chiamare lo sketcher 
+
+		this.ball.point.x = this.paddle.point.x + this.paddle.width/2 - this.ball.radius;
+		this.sketcher.drawBall(this.ball);
+
+	}
+
+
+Game.prototype.gameover = 
+	function(){
+		this.pauseButton.disabled = true;
+		this.resumeButton.disabled = true;
+		clearInterval(this.paddleTimer);
+		clearInterval(this.ballTimer);
+		createGameOverPopup();
+		return;
+	}

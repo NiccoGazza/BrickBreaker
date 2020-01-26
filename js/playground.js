@@ -1,8 +1,8 @@
-function Playground(_playground){
+function Playground(playground){
 
-	this.offsetLeft = _playground.offsetLeft;
-	this.offsetTop = _playground.offsetTop;
-	this.width = _playground.offsetWidth;
-	this.height = _playground.offsetHeight;
+	this.offsetLeft = playground.offsetLeft;
+	this.offsetTop = playground.offsetTop;
+	this.width = playground.offsetWidth;
+	this.height = playground.offsetHeight;
 
 }
