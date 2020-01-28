@@ -9,11 +9,42 @@ body{
 	margin: 0;
 }
 
+a{
+	color: black;
+	text-decoration: none;
+}
+
+a:visited{
+	color: black;
+}
+
+a.ext:hover{
+	background-color: #d9d9d9;
+	font-size: 130%;
+}
 
 img{
 	max-width: 50%;
 	max-height: 50%;
 }	
+
+ul{
+	text-align: center;
+	padding-left: 0;
+	list-style-type: none;
+	font-size: 16pt;
+}
+
+li{
+	margin-top: 33%;
+	cursor: pointer;
+	background-color: white;
+	border: inset 5px black;
+	border-radius: 20px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
 
 
 #playgroundWrapper{
@@ -132,7 +163,17 @@ button:active{
 
 }
 
-/***************/
+/*******UI********/
+
+#menu{
+	left: 20px;
+	width: 15%;
+	position: absolute;
+	color: black;
+	box-sizing: border-box;
+}
+
+
 
 #divControl{
 	width: 100%;
@@ -192,7 +233,7 @@ button:active{
 .popup{
 	position: absolute;
 	width: 400px;
-	height: 150px;
+	height: 200px;
 	left: 50%;
 	top: 50%;
 	margin-left: -200px;
@@ -206,7 +247,6 @@ button:active{
 
 #game_over{
 	font-size: 22pt;
-	height: 100px;
 
 }
 

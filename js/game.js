@@ -125,9 +125,9 @@ Game.prototype.keyUpHandler =
 
 
 		switch(varkey){
-			/*case 13: 							//debug  
-				createPopup(this.ground);
-				break;*/
+			case 13: 							//debug  
+				createGameOverPopup();
+				break;
 			case 32: 
 				if(this.begin == true){
 					start(game);

@@ -29,6 +29,11 @@ Sketcher.prototype.drawPlaygroundWrapper =
 		var divButton = document.getElementById('divButton');
 		divButton.style.marginTop = playground.offsetTop + 'px';
 		divButton.style.marginLeft = playground.offsetLeft + playground.width  + 'px';
+
+
+		var menu = document.getElementById('menu');
+		menu.style.marginTop = playground.offsetTop + 'px';
+		menu.style.height = playground.height + 'px';
 	
 	}
 
