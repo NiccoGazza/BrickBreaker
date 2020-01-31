@@ -18,7 +18,6 @@ Paddle.prototype.move =
 
 Paddle.prototype.resetPosition = 
 	function(playground){
-		//this.width = LONG_PADDLE_WIDTH;
 
 		this.point.x = playground.offsetLeft + playground.width/2 - this.width/2;  
 		this.point.y = playground.offsetTop + playground.height - BLOCK_HEIGHT;

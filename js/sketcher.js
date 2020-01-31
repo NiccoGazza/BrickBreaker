@@ -87,12 +87,12 @@ Sketcher.prototype.drawBricks =
 		for(var i=0; i < ground.rows; i++){
 			for(var j=0; j < ground.columns; j++){
 				if(bricks[i][j].life > 0){
+
 					var newBrick = document.createElement('div');
 					newBrick.setAttribute('id', 'brick'+ (i*ground.columns + j));
 					this.playground.appendChild(newBrick);
 
-					//var random = Math.floor(Math.random()*4);
-
+					newBrick.style.width = ground.brickWidth + 'px';
 					newBrick.style.top = bricks[i][j].point.y + 'px';
 					newBrick.style.left = bricks[i][j].point.x  + 'px';
 					newBrick.setAttribute('class', 'brick ' + color[ bricks[i][j].life ]);
@@ -128,9 +128,21 @@ Sketcher.prototype.updateLife =
 Sketcher.prototype.changeColor = 
 	function(ground, i , j){
 		var brick = document.getElementById('brick' + (i*ground.columns + j));
+		console.log('cambio colore');
+
 		if(brick != null){
-			brick.setAttribute('class', 'brick ' + color [ground.configuration[i][j].life ])
+			brick.setAttribute('class', 'brick ' + color[ground.configuration[i][j].life])
 			return;
 		}
+		else console.log("non sono riuscito a cambiare colore");
+	}
 
+Sketcher.prototype.getScore = 
+	function(){
+		var divScore = document.getElementById('score');
+		if(divScore != null){
+			var scoreSpan = divScore.childNodes[1];
+			var score = parseInt(scoreSpan.firstChild.nodeValue);
+			return score;
+		}
 	}

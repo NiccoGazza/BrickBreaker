@@ -29,18 +29,18 @@
 		<meta name="description" content="Brick Breaker Game">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
-	<script>
-	function openInfoTab(){
-		window.open("./istruzioni.html", "_blank");
-	}
-	function openRegistrationPage(){
-		window.open("./php/registration.php", "_self");
-	}
-	</script>
 	<body>
+		<script>
+		function openInfoTab(){
+			window.open("./html/istruzioni.html", "_blank");
+		}
+		function openRegistrationPage(){
+			window.open("./php/registration.php", "_self");
+		}
+		</script>
 		<button title="Click to know how to play" onclick="openInfoTab()">
 		</button>
-		<section id="login_content">
+		<div id="login_content">
 			<div id="login_header_content" class="Courier_Prime">
 				<br>
 				Brick Breaker:<br>
@@ -67,6 +67,6 @@
 				?>
 			</div> 
 			</form>
-		</section>
+		</div>
 	</body>
 </html>

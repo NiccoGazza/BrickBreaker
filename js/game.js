@@ -124,10 +124,10 @@ Game.prototype.keyUpHandler =
 		varkey = (evt.which != null) ? evt.which : evt.keyCode;
 
 
-		switch(varkey){
-			case 13: 							//debug  
-				createGameOverPopup();
-				break;
+		switch(varkey){ 
+			case 13:
+				this.ground.createPopup(this, this.ground);
+				break; 
 			case 32: 
 				if(this.begin == true){
 					start(game);
@@ -163,9 +163,11 @@ Game.prototype.paddleClock =
 Game.prototype.ballClock = 
 	function(){ 
 		this.ball.move(this.playground);
+
 		this.ball.checkPaddleHit(this.paddle);
 		this.ground.checkHit(this, this.ball, this.paddle, this.sketcher);
-		this.ball.checkBottomHit(this, this.playground); //toglie una vita. Se le vite sono 0 => gameover
+		this.ball.checkBottomHit(this, this.playground); 
+		
 		this.sketcher.drawBall(this.ball);
 	}
 
@@ -212,6 +214,42 @@ Game.prototype.gameover =
 		this.resumeButton.disabled = true;
 		clearInterval(this.paddleTimer);
 		clearInterval(this.ballTimer);
-		createGameOverPopup();
+
+		//inserisco la partita nella tabella
+		var flag = this.updateScore();
+
+		createGameOverPopup(flag);
 		return;
+	}
+
+
+Game.prototype.updateScore =
+	function(){
+		var flag;
+
+		var score = this.sketcher.getScore();
+		var toSend = 'punteggio=' + score;
+		console.log(toSend);
+
+		var xmlHttp = new XMLHttpRequest();
+		var url = './../php/insertScore.php';
+
+
+		xmlHttp.open('POST', url, false);
+		xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+		xmlHttp.onreadystatechange = function(){
+			if(this.readyState == 4)
+				console.log("aggiornamento effettuato con successo");
+			console.log(this.responseText)
+
+			if(this.responseText == 'Record')
+				flag = true;
+			else flag = false;
+		}
+
+		xmlHttp.send(toSend);
+
+		return flag;
+
 	}

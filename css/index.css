@@ -58,7 +58,7 @@ button{
 #login_header_content{
 	color: #EDEDED;
 	font-size: 32pt;
-	font-style: bold;
+	font-weight: bold;
 }
 
 #registration_alert{
@@ -89,7 +89,7 @@ input[type=text], input[type=password]{
 }
 
 input[type=button], input[type=submit]{
-	font-style: bold;
+	font-weight: bold;
 	font-size: 14pt;
 	margin: 4px 2px;
 	width: 50%;

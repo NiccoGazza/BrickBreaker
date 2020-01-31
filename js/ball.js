@@ -52,8 +52,9 @@ Ball.prototype.checkPaddleHit =
 					new_stepY = normalizeY(new_stepX);
 					
 					this.stepY = -new_stepY;
-
-					this.stepX = -(Math.sqrt(new_stepX));
+					if(paddle.flag > 0)
+						this.stepX = Math.sqrt(new_stepX);
+					else this.stepX = -Math.sqrt(new_stepX);
 
 						
 					return;
@@ -65,8 +66,8 @@ Ball.prototype.checkPaddleHit =
 
 					this.stepY = -new_stepY;
 
-					if(this.stepX < 0)
-						this.stepX = -Math.sqrt(new_stepX);
+					if(this.stepX < 0) //la palla arriva da dx
+							this.stepX = -Math.sqrt(new_stepX);
 					else 
 						this.stepX = Math.sqrt(new_stepX);	
 
@@ -95,8 +96,9 @@ Ball.prototype.checkPaddleHit =
 
 					this.stepY = -new_stepY;
 
-					this.stepX = Math.sqrt(new_stepX);
-
+					if(paddle.flag > 0)
+						this.stepX = Math.sqrt(new_stepX);
+					else this.stepX = -Math.sqrt(new_stepX);
 
 					return;
 				}
@@ -105,13 +107,13 @@ Ball.prototype.checkPaddleHit =
 		
 	}
 
-Ball.prototype.checkBottomHit =    //il return mi serve per il powerUp della calamita: devo stare attento quando prendo la calamita ma non la pallina
+Ball.prototype.checkBottomHit =  
 	function(game, playground){
 		if(this.point.y + 2*this.radius >= playground.offsetTop + playground.height){ //hit pavimento
+
 			clearInterval(game.ballTimer);
 			clearInterval(game.paddleTimer);
 
-			//togliere vita e vedere gameover
 			LIVES--;
 			game.sketcher.updateLife(LIVES);
 

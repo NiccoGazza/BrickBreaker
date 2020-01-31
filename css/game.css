@@ -83,7 +83,7 @@ button:active{
 
 #playground{
 	min-height: 70%;
-	width: 60%;
+	width: 50%;
 	margin: auto;
 	margin-top: 8%;
 	border: 1px solid black;
@@ -133,7 +133,7 @@ button:active{
 /*******BRICKS*****/
 .brick{
 	position: absolute;
-	width: 100px;
+	/*width: 100px;*/
 	height: 25px;
 	border: solid 1px black;
 	box-sizing: border-box;

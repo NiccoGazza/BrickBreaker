@@ -18,9 +18,12 @@
 	</head>
 	<body onload="begin()">
 		<div id="playgroundWrapper">
+			<?php
+				session_start();
+			?>
 			<aside id = "menu" class="Arcade">
 				<ul>
-					<li><a href="./php/main.php">Main Menu</a></li>
+					<li><a href="./php/hub.php">Main Menu</a></li>
 					<li><a href="./php/classifica.php">Global Ranking</a></li>
 					<li><a href="./php/logout.php">Logout</a></li>
 				</ul>	
