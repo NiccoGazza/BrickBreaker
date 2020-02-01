@@ -148,18 +148,18 @@ button:active{
 }
 
 .red{
-	background-color: #ff0808;
-	box-shadow: inset 50px 30px 88px -40px #A60000;
+	background: rgb(201,0,0);
+	background: linear-gradient(90deg, rgba(201,0,0,1) 23%, rgba(255,0,0,1) 58%, rgba(255,137,83,1) 90%);
 }
 
 .orange{
-	background-color: #ff6a00;
-	box-shadow: inset 50px 31px 84px -40px #f2881d;
+	background: rgb(255,119,0);
+	background: linear-gradient(90deg, rgba(255,119,0,1) 0%, rgba(255,166,0,1) 58%, rgba(255,190,70,1) 94%);
 }
 
 .yellow{
-	background-color: #ffea00;
-	box-shadow: inset 71px 54px 80px -40px #f5d000;
+	background: rgb(255,243,0);
+	background: linear-gradient(90deg, rgba(255,243,0,1) 0%, rgba(250,255,163,1) 100%);
 
 }
 
