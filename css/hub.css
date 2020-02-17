@@ -1,0 +1,181 @@
+body{
+	height: 100%;
+	margin: 0;
+	background-image: url("../img/sfondo.png");
+	background-size: cover;
+}
+html{
+	height: 100%;
+}
+
+p{
+	padding:10px;
+}
+
+.hidden{
+	display: none;
+}
+
+.prof_button{
+	position: relative;
+	margin: 0;
+	width: 30%;
+	display: inline-block;
+	opacity: 1;
+	font-weight: bold;
+	font-size: 13pt;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+
+#welcome{
+	width: 100%;
+	height: 170px;
+	text-align: center;
+	background-color: white;
+	color: black;
+	border: 3px solid black;
+	opacity: 0.9;
+	box-shadow: inset 0px 0px 76px 20px rgba(94,93,94,1);
+}
+
+#statistics{
+	position: relative;
+	padding: 10px;
+	font-size: 16pt;
+	width: 50%;
+	height: 480px;
+	margin: 40px auto;
+	text-align: center;
+	background-color: white;
+	color: black;
+	border: 3px solid black;
+	opacity: 0.9;
+	box-shadow: inset 0px 0px 76px 20px rgba(94,93,94,1);
+}
+
+
+#classifica{
+	text-align: center;
+	width: 50%;
+	margin: 40px auto;
+	color: black;
+	background-color: white;
+	border: 5px outset white;
+	box-shadow: inset 0px 0px 76px 20px rgba(94,93,94,1);
+}
+
+.profile_pic{
+	top: 20px;
+	left: 80%;
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	border: 1px solid black;
+	border-radius: 40px;	
+}
+input{
+	font-family: 'Courier_Prime', monospace;
+	margin-left: 5px;
+	margin-top: 10px;
+	display: block;
+}
+
+.pic{
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
+}
+
+th{
+	margin: 1px;
+	padding: 3px;
+	font-size: 16pt;
+	border: 3px solid black;
+	color: white;
+	background-color: black;
+}
+
+td{
+	padding: 5px;
+	font-size: 15pt;
+	border: 3px solid black;
+	width: 33.3%;
+}
+
+
+a{
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+	font-weight: bold;
+	font-family: 'Courier_Prime', monospace;
+
+}
+
+a:visited{
+	text-decoration: none;
+	color: black;
+}
+
+a.zoom:hover{
+	font-size: 120%;
+}
+a.zoom2:hover{
+	font-size: 150%;
+}
+
+ul{
+	border: 1px inset black;
+	text-align: center;
+	padding-left: 0;
+	list-style-type: none;
+	font-size: 16pt;
+}
+li{
+	margin-top: 5px;
+	text-align: center;
+	display:inline-block;
+	float: left;
+	width: 33.3%;
+}
+
+.orizzontale{
+	width: 200px;
+	position: relative;
+	margin: 0 auto;
+}
+
+button{
+	width: 150px;
+	color: black;
+	border: solid 2px white;
+	border-radius: 3px;
+	background-color: white;
+	box-shadow: 0px 5px 0px #5b5c5b;
+	top: 0px;
+	margin: 20px;
+	padding: 10px;
+	display: block;
+	font-size: 30px;
+	transition: all ease 0.1s;
+
+}
+
+button:active{
+  box-shadow: 0 3px 0 #5b5c5b;
+  top: 3px;
+
+}
+
+
+.Courier_Prime{
+	font-family: 'Courier Prime', monospace;
+}

@@ -33,7 +33,8 @@ Sketcher.prototype.drawPlaygroundWrapper =
 
 		var menu = document.getElementById('menu');
 		menu.style.marginTop = playground.offsetTop + 'px';
-		menu.style.height = playground.height + 'px';
+		menu.style.height = playground.height - playground.offsetTop + 'px';
+		menu.style.top = playground.offsetTop + 'px';
 	
 	}
 

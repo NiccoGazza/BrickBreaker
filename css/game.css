@@ -29,14 +29,15 @@ img{
 }	
 
 ul{
+	margin: 0px;
+	height: 100%;
 	text-align: center;
 	padding-left: 0;
 	list-style-type: none;
-	font-size: 16pt;
+	font-size: 15pt;
 }
 
 li{
-	margin-top: 33%;
 	cursor: pointer;
 	background-color: white;
 	border: inset 5px black;
@@ -45,7 +46,10 @@ li{
 	padding-bottom: 30px;
 }
 
+li:hover{
+	background-color: #d9d9d9;
 
+}
 
 #playgroundWrapper{
 	margin: 0;
